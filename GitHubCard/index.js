@@ -116,3 +116,19 @@ function createCard(item){
   bigknell
 */
 
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach(item =>{
+axios
+  .get(`https://api.github.com/users/${item}`)
+  .then(response => {
+    console.log(response);
+    const cards = document.querySelector('.cards');
+    const gitcard = createCard(response.data);
+    cards.appendChild(gitcard);
+    })
+
+  .catch(error => {
+    console.log("The data was not returned", error);
+  })
+})
